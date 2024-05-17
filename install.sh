@@ -9,6 +9,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 # zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+# fzf-tab
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+
 # zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 # obs.: need to add `eval "$(zoxide init zsh)"` to .zshrc
@@ -21,6 +24,17 @@ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://b
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
 sudo apt install brave-browser
+
+# Brave Web Apps
+# - Whatsapp Web
+
+# Chrome
+# To DO
+
+# Chrome Web Apps
+# - Youtube
+# - Calendar
+# - Gmail
 
 # NeoVim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
