@@ -40,3 +40,7 @@ sudo apt install brave-browser
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf ~/.local/opt/nvim
 sudo tar -C ~/.local/opt -xzf nvim-linux64.tar.gz
+
+# Tmux
+sudo apt install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
