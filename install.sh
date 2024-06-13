@@ -49,8 +49,10 @@ sudo apt install brave-browser
 
 # NeoVim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+# Should check if .local/opt exists
 sudo rm -rf ~/.local/opt/nvim
-sudo tar -C ~/.local/opt -xzf nvim-linux64.tar.gz
+sudo tar -C ~/.local/opt -xzf nvim-linux64.tar.gz # Should name the folder nvim
+# Should add the executable to path
 
 # Tmux
 sudo apt install tmux
