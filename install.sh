@@ -58,3 +58,4 @@ sudo tar -C ~/.local/opt -xzf nvim-linux64.tar.gz # Should name the folder nvim
 sudo apt install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # prefix + I to install tpm plugins
+# Install a nerdfont
