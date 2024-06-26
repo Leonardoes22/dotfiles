@@ -58,3 +58,10 @@ eval "$(zoxide init zsh)"
 
 # Aliases
 alias activate='source .venv/bin/activate' # Activate .venv of current dir
+
+# fnm
+FNM_PATH="$HOME/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
