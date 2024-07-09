@@ -8,28 +8,12 @@ format = """
 $git_branch $git_status\
 $fill\
 $python\
-$aws\
-$golang\
-$java\
-$nodejs\
-$rust\
-$ruby\
-$scala\
-$dart\
-$conda\
-$pijul_channel\
 $lua\
-$rlang\
-$package\
-$buf\
-$memory_usage\
 $docker_context\
-$cmd_duration
-╰─ $hostname$character"""
+$cmd_duration\
+$hostname
+╰─$character"""
 
-right_format = """
-
-"""
 # continuation_prompt = '▶▶ '
 
 [character]
@@ -39,9 +23,9 @@ error_symbol = "[❯](red)"
 # Shows the hostname
 [hostname]
 ssh_only = true
-format = '[$hostname](bold yellow)'
+format = '[$hostname](bold yellow)$ssh_symbol'
 disabled = false
-ssh_symbol = " "
+ssh_symbol = "  "
 
 # Shows current directory
 [directory]

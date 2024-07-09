@@ -5,10 +5,10 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-export OSH='/home/leonardoes/.oh-my-bash'
+export OSH="$HOME/.oh-my-bash"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
+# it"ll load a random theme each time that oh-my-bash is loaded.
 # OSH_THEME="robbyrussell"
 # OSH_THEME="purity"
 # OSH_THEME="lambda"
