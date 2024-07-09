@@ -16,6 +16,12 @@ git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/p
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 # obs.: need to add `eval "$(zoxide init zsh)"` to .zshrc
 
+# Install oh-my-bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
+# starship
+curl -sS https://starship.rs/install.sh | sh
+
 # fzf
 sudo apt install fzf
 
