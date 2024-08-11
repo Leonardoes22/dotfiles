@@ -61,6 +61,11 @@
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     },
     {
+        "key": "shift+o",
+        "command": "notebook.cell.insertCodeCellAboveAndFocusContainer",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
         "key": "b",
         "command": "-notebook.cell.insertCodeCellBelowAndFocusContainer",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
@@ -116,12 +121,12 @@
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputFocused && activeEditor == 'workbench.editor.notebook' && notebookCellType == 'markup'"
     },
     {
-        "key": "h",
+        "key": "z c",
         "command": "notebook.fold",
         "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     },
     {
-        "key": "l",
+        "key": "z o",
         "command": "notebook.unfold",
         "when": "notebookEditorFocused && !inputFocus && activeEditor == 'workbench.editor.notebook'"
     },
@@ -144,5 +149,30 @@
         "key": "alt+k",
         "command": "notebook.cell.moveUp",
         "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "i",
+        "command": "notebook.cell.edit",
+        "when": "notebookCellListFocused && notebookEditable && !editorHoverFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "z z",
+        "command": "notebook.centerActiveCell",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-notebook.centerActiveCell",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "u",
+        "command": "undo",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "z",
+        "command": "-undo",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     }
 ]
