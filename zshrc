@@ -58,6 +58,7 @@ eval "$(zoxide init zsh)"
 
 # Aliases
 alias activate='source .venv/bin/activate' # Activate .venv of current dir
+alias ipy='ipython'
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
