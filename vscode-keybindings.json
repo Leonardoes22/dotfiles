@@ -51,11 +51,6 @@
     //
 
     {
-        "key": "a",
-        "command": "-notebook.cell.insertCodeCellAboveAndFocusContainer",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
         "key": "o",
         "command": "notebook.cell.insertCodeCellBelowAndFocusContainer",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
@@ -66,23 +61,8 @@
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     },
     {
-        "key": "b",
-        "command": "-notebook.cell.insertCodeCellBelowAndFocusContainer",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
-        "key": "o",
-        "command": "-notebook.cell.toggleOutputs",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
         "key": "y",
         "command": "notebook.cell.copy",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
-        "key": "c",
-        "command": "-notebook.cell.copy",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     },
     {
@@ -91,33 +71,13 @@
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     },
     {
-        "key": "x",
-        "command": "-notebook.cell.cut",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
-        "key": "d d",
-        "command": "-notebook.cell.delete",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
         "key": "p",
         "command": "notebook.cell.paste",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     },
     {
-        "key": "v",
-        "command": "-notebook.cell.paste",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    },
-    {
         "key": "c",
         "command": "notebook.cell.changeToCode",
-        "when": "notebookEditorFocused && !inputFocus && !notebookOutputFocused && activeEditor == 'workbench.editor.notebook' && notebookCellType == 'markup'"
-    },
-    {
-        "key": "y",
-        "command": "-notebook.cell.changeToCode",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputFocused && activeEditor == 'workbench.editor.notebook' && notebookCellType == 'markup'"
     },
     {
@@ -133,11 +93,6 @@
     {
         "key": "shift+p",
         "command": "notebook.cell.pasteAbove",
-        "when": "notebookEditorFocused && !inputFocus"
-    },
-    {
-        "key": "ctrl+shift+v",
-        "command": "-notebook.cell.pasteAbove",
         "when": "notebookEditorFocused && !inputFocus"
     },
     {
@@ -161,14 +116,61 @@
         "when": "notebookEditorFocused"
     },
     {
-        "key": "ctrl+l",
-        "command": "-notebook.centerActiveCell",
-        "when": "notebookEditorFocused"
-    },
-    {
         "key": "u",
         "command": "undo",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+
+    // Remove conflicting
+    {
+        "key": "a",
+        "command": "-notebook.cell.insertCodeCellAboveAndFocusContainer",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "b",
+        "command": "-notebook.cell.insertCodeCellBelowAndFocusContainer",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "o",
+        "command": "-notebook.cell.toggleOutputs",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "x",
+        "command": "-notebook.cell.cut",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "d d",
+        "command": "-notebook.cell.delete",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "c",
+        "command": "-notebook.cell.copy",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+       "key": "v",
+        "command": "-notebook.cell.paste",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
+    },
+    {
+        "key": "y",
+        "command": "-notebook.cell.changeToCode",
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputFocused && activeEditor == 'workbench.editor.notebook' && notebookCellType == 'markup'"
+    },
+    {
+        "key": "ctrl+shift+v",
+        "command": "-notebook.cell.pasteAbove",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-notebook.centerActiveCell",
+        "when": "notebookEditorFocused"
     },
     {
         "key": "z",
@@ -199,12 +201,12 @@
     {
         "key": "ctrl+k",
         "command": "workbench.action.navigateUp",
-        "when": "!terminalFocus && neovim.mode != 'cmdline'"
+        "when": "!inQuickOpen && !suggestWidgetVisible && !codeActionMenuVisible && !terminalFocus && neovim.mode != 'cmdline'"
     },
     {
         "key": "ctrl+j",
         "command": "workbench.action.navigateDown",
-        "when": "!terminalFocus && neovim.mode != 'cmdline'"
+        "when": "!inQuickOpen && !suggestWidgetVisible && !codeActionMenuVisible && !terminalFocus && neovim.mode != 'cmdline'"
     },
     {
         "key": "ctrl+h",
@@ -215,5 +217,39 @@
         "key": "ctrl+l",
         "command": "workbench.action.navigateRight",
         "when": "!terminalFocus && neovim.mode != 'cmdline'"
+    },
+    
+    //
+    // COMMANDS AND QUICK OPEN
+    //
+
+    {
+        "key": "ctrl+shift+p",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.showCommands",
+        "when": "!inQuickOpen && !suggestWidgetVisible && !codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.files.openFile",
+        "when": "true"
+    },
+
+    // Remove conflicting
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile",
+        "when": "true"
     },
 ]
