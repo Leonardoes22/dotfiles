@@ -174,5 +174,46 @@
         "key": "z",
         "command": "-undo",
         "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
-    }
+    },
+    
+    //
+    // FILE EXPLORER NAVIGATION
+    //
+    
+    {
+        "key": "\\",
+        "command": "workbench.view.explorer",
+        "when": "neovim.mode == 'normal'"
+    },
+    {
+        "key": "\\",
+        "command": "workbench.action.closeSidebar",
+        "when": "filesExplorerFocus"
+    },
+    
+
+    //
+    // PANE NAVIGATION
+    //
+    
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp",
+        "when": "!terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown",
+        "when": "!terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "!terminalFocus && neovim.mode != 'cmdline'"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+        "when": "!terminalFocus && neovim.mode != 'cmdline'"
+    },
 ]
