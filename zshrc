@@ -59,6 +59,8 @@ eval "$(zoxide init zsh)"
 # Aliases
 alias activate='source .venv/bin/activate' # Activate .venv of current dir
 alias ipy='ipython'
+alias launch_digikam='setxkbmap us; flatpak run org.kde.digikam'
+alias fdir='~/projects/extra-launcher-plugins/fdir/fdir.sh'
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"

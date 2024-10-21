@@ -113,7 +113,7 @@
     {
         "key": "z z",
         "command": "notebook.centerActiveCell",
-        "when": "notebookEditorFocused"
+        "when": "notebookEditorFocused && !inputFocus && !notebookOutputInputFocused"
     },
     {
         "key": "u",
@@ -228,28 +228,42 @@
         "command": "workbench.action.showCommands"
     },
     {
-        "key": "ctrl+p",
-        "command": "workbench.action.showCommands",
-        "when": "!inQuickOpen && !suggestWidgetVisible && !codeActionMenuVisible"
+      "key": "ctrl+0",
+      "command": "-workbench.action.focusSideBar"
     },
     {
-        "key": "ctrl+o",
-        "command": "workbench.action.quickOpen"
+      "key": "ctrl+shift+0",
+      "command": "editor.foldAll",
+      "when": "editorTextFocus && foldingEnabled"
     },
     {
-        "key": "ctrl+shift+o",
-        "command": "workbench.action.files.openFile",
-        "when": "true"
+      "key": "ctrl+k ctrl+0",
+      "command": "-editor.foldAll",
+      "when": "editorTextFocus && foldingEnabled"
     },
+    // {
+    //     "key": "ctrl+p",
+    //     "command": "workbench.action.showCommands",
+    //     "when": "!inQuickOpen && !suggestWidgetVisible && !codeActionMenuVisible"
+    // },
+    // {
+    //     "key": "ctrl+o",
+    //     "command": "workbench.action.quickOpen"
+    // },
+    // {
+    //     "key": "ctrl+shift+o",
+    //     "command": "workbench.action.files.openFile",
+    //     "when": "true"
+    // },
 
-    // Remove conflicting
-    {
-        "key": "ctrl+p",
-        "command": "-workbench.action.quickOpen"
-    },
-    {
-        "key": "ctrl+o",
-        "command": "-workbench.action.files.openFile",
-        "when": "true"
-    },
+    // // Remove conflicting
+    // {
+    //     "key": "ctrl+p",
+    //     "command": "-workbench.action.quickOpen"
+    // },
+    // {
+    //     "key": "ctrl+o",
+    //     "command": "-workbench.action.files.openFile",
+    //     "when": "true"
+    // },
 ]
