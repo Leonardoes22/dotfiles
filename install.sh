@@ -16,6 +16,10 @@ check_command() {
     command -v "$1" >/dev/null 2>&1 && log_success "$1 successfully installed" || log_error "$1 failed to install"
 }
 
+verify_command () {
+    command -v "$1" &> /dev/null
+}
+
 setup_zsh() {
     log_info "Starting zsh setup..."
 
@@ -37,7 +41,7 @@ setup_zsh() {
     # zsh-syntax-highlighting
     if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
         log_info "Installing zsh-syntax-highlighting"
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || log_error "Failed to install zsh-syntax-highlighting"
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || log_error "Failed to install zsh-syntax-highlighting"
     else
         log_info "Skipping zsh-syntax-highlighting setup. Directory already exists"
     fi
@@ -51,14 +55,25 @@ setup_zsh() {
     fi
 
     # powerlevel10k
-    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab" ]; then
+    if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
         log_info "Installing powerlevel10k"
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k || log_error "Failed to install powerlevel10k"
     else
         log_info "Skipping powerlevel10k setup. Directory already exists"
     fi
-
     
+    # Symlink files
+    if [ -f "$HOME/.zshrc" ]; then
+	mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+        log_info "File .zshrc already exists. Created backup as .zshrc.bak"
+    fi
+    ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
+
+    if [ -f "$HOME/.p10k.zsh" ]; then
+	mv "$HOME/.p10k.zsh" "$HOME/.p10k.zsh.bak"
+        log_info "File .p10k.zsh already exists. Created backup as .p10k.zsh.bak"
+    fi
+    ln -s "$(pwd)/p10k.zsh" "$HOME/.p10k.zsh"    
 }
 
 setup_bash() {
@@ -74,51 +89,113 @@ setup_bash() {
 setup_terminal_utilities() {
 
     # zoxide
-    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-    check_command zoxide
+    if ! verify_command "zoxide"; then
+        log_info "Installing zoxide"
+
+        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash || log_error "Failed to install zoxide"
+
+        check_command zoxide
+    else
+        log_info "Skipping zoxide setup. Command already installed"
+    fi
 
     # fzf
-    sudo apt-get install -y fzf
-    check_command fzf
+    if ! verify_command "fzf"; then
+        log_info "Installing fzf"
+
+        sudo apt-get install -y fzf || log_error "Failed to install fzf"
+
+        check_command fzf
+    else
+        log_info "Skipping fzf setup. Command already installed"
+    fi
 
     # ripgrep
-    sudo apt-get install -y ripgrep
-    check_command rg
+    if ! verify_command "rg"; then
+        log_info "Installing ripgrep"
+
+        sudo apt-get install -y ripgrep || log_error "Failed to install ripgrep"
+
+        check_command rg
+    else
+        log_info "Skipping ripgrep setup. Command already installed"
+    fi
 
     # fdfind
-    sudo apt-get install -y fd-find
-    sudo ln -s /usr/bin/fdfind /usr/bin/fd # create link to point fd to fdfind
-    check_command fdfind
-    check_command fd 
+    if ! verify_command "fdfind"; then
+        log_info "Installing fdfind"
+
+        sudo apt-get install -y fd-find || log_error "Failed to install fdfind"
+        sudo ln -s /usr/bin/fdfind /usr/bin/fd # create link to point fd to fdfind
+
+        check_command fdfind
+        check_command fd 
+    else
+        log_info "Skipping fdfind setup. Command already installed"
+    fi
 
     # tmux
-    sudo apt-get install -y tmux
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    # prefix + I to install tpm plugins
-    # Install a nerdfont
-    check_command tmux
+    if ! verify_command "tmux"; then
+        log_info "Installing tmux"
+
+        sudo apt-get install -y tmux || log_error "Failed to install tmux"
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        echo "Don't forget to install a nerdfont and tpm plugins with prefix + I"
+        # prefix + I to install tpm plugins
+        # Install a nerdfont
+
+        check_command tmux
+    else
+        log_info "Skipping tmux setup. Command already installed"
+    fi
+
+    if [ -f "$HOME/.tmux.conf" ]; then
+	mv "$HOME/.tmux.conf" "$HOME/.tmux.conf.bak"
+        log_info "File .tmux.conf already exists. Created backup as .tmux.conf.bak"
+    fi
+    ln -s "$(pwd)/tmux.conf" "$HOME/.tmux.conf"    
+    
 
     # lazygit
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit /usr/local/bin
-    rm lazygit*
-    check_command lazygit
+    if ! verify_command "lazygit"; then
+        log_info "Installing lazygit"
+
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin || log_error "Failed to install lazygit"
+        rm lazygit*
+
+        check_command lazygit
+    else
+        log_info "Skipping lazygit setup. Command already installed"
+    fi
 
     # neovim
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-    sudo tar -C /opt -xzf nvim-linux64.tar.gz
-    rm nvim-linux64.tar.gz
-    sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin
-    
-    
-    # pyright installation requires nmp 
-    curl -fsSL https://fnm.vercel.app/install | bash
-    fnm use --install-if-missing 20
+    if ! verify_command "nvim"; then
+        log_info "Installing nvim"
 
-    check_command fnm
-    check_command nvim
+        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+        sudo tar -C /opt -xzf nvim-linux64.tar.gz
+        rm nvim-linux64.tar.gz
+        sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin || log_error "Failed to install nvim"
+
+        # pyright installation requires nmp 
+        curl -fsSL https://fnm.vercel.app/install | bash
+        fnm use --install-if-missing 20
+
+        check_command nvim
+        check_command fnm
+    else
+        log_info "Skipping nvim setup. Command already installed"
+    fi
+
+    if [ -d "$HOME/.config/nvim" ]; then
+	rm "$HOME/.config/nvim.bak" &> /dev/null
+	mv "$HOME/.config/nvim" "$HOME/.config/nvim.bak"
+        log_info "Directory ~/.config/nvim already exists. Created backup as ~/.config/nvim.bak"
+    fi
+    ln -s "$(pwd)/nvim" "$HOME/.config/nvim"    
 
 }
 
@@ -141,4 +218,4 @@ setup_apps() {
 setup_zsh || log_error "Failed to setup zsh"
 # setup_bash || log_error "Failed to setup bash"
 setup_terminal_utilities || log_error "Failed to setup terminal utilities"
-setup_apps || log_error "Failed to setup applications"
+# setup_apps || log_error "Failed to setup applications"
