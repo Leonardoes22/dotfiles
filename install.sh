@@ -175,17 +175,12 @@ setup_terminal_utilities() {
     if ! verify_command "nvim"; then
         log_info "Installing nvim"
 
-        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz || log_error "Failed to install nvim"
         sudo tar -C /opt -xzf nvim-linux64.tar.gz
         rm nvim-linux64.tar.gz
-        sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin || log_error "Failed to install nvim"
-
-        # pyright installation requires nmp 
-        curl -fsSL https://fnm.vercel.app/install | bash
-        fnm use --install-if-missing 20
+        sudo ln -s /opt/nvim-linux64/bin/nvim /usr/local/bin 
 
         check_command nvim
-        check_command fnm
     else
         log_info "Skipping nvim setup. Command already installed"
     fi
@@ -196,6 +191,25 @@ setup_terminal_utilities() {
         log_info "Directory ~/.config/nvim already exists. Created backup as ~/.config/nvim.bak"
     fi
     ln -s "$(pwd)/nvim" "$HOME/.config/nvim"    
+
+    # fnm
+    if ! verify_command "fnm"; then
+        log_info "Installing fnm"
+
+        # pyright installation requires nmp 
+        curl -fsSL https://fnm.vercel.app/install | bash || log_error "Failed to install fnm"
+        fnm use --install-if-missing 20
+
+        FNM_PATH="$HOME/.local/share/fnm"
+        if [ -d "$FNM_PATH" ]; then
+          export PATH="$HOME/.local/share/fnm:$PATH"
+          eval "`fnm env`"
+        fi
+        
+        check_command fnm
+    else
+        log_info "Skipping fnm setup. Command already installed"
+    fi
 
 }
 
@@ -214,7 +228,7 @@ setup_apps() {
     sudo apt install brave-browser
 
 }
-
+export PATH="$PATH:$HOME/.local/bin/"
 setup_zsh || log_error "Failed to setup zsh"
 # setup_bash || log_error "Failed to setup bash"
 setup_terminal_utilities || log_error "Failed to setup terminal utilities"
