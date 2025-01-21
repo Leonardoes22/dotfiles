@@ -256,20 +256,26 @@
       "command": "-editor.foldAll",
       "when": "editorTextFocus && foldingEnabled"
     },
-    // {
-    //     "key": "ctrl+p",
-    //     "command": "workbench.action.showCommands",
-    //     "when": "!inQuickOpen && !suggestWidgetVisible && !codeActionMenuVisible"
-    // },
-    // {
-    //     "key": "ctrl+o",
-    //     "command": "workbench.action.quickOpen"
-    // },
-    // {
-    //     "key": "ctrl+shift+o",
-    //     "command": "workbench.action.files.openFile",
-    //     "when": "true"
-    // },
+    {
+    // Not working properly. Some key combination make it open to the side
+        "key": "ctrl+l",
+        "command": "quickInput.acceptInBackground",
+        "when": "cursorAtEndOfQuickInputBox && inQuickInput && quickInputType == 'quickPick' || inQuickInput && !inputFocus && quickInputType == 'quickPick'"
+    },
+
+    //
+    // STATUS BAR NAVIGATION
+    //
+    {
+        "key": "l",
+        "command": "workbench.statusBar.focusNext",
+        "when": "statusBarFocused"
+    },
+    {
+        "key": "h",
+        "command": "workbench.statusBar.focusPrevious",
+        "when": "statusBarFocused"
+    },
 
     // // Remove conflicting
     // {
