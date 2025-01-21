@@ -320,4 +320,13 @@
         "command": "breadcrumbs.focusPreviousWithPicker",
         "when": "breadcrumbsActive && breadcrumbsVisible && listFocus && !inputFocus && !treestickyScrollFocused"
     },
+
+    //
+    // TERMINAL
+    //
+    {
+        "key": "ctrl+f12",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
 ]
