@@ -244,7 +244,7 @@
         "key": "ctrl+k ctrl+m",
         "command": "-workbench.action.toggleMaximizeEditorGroup",
         "when": "editorPartMaximizedEditorGroup || editorPartMultipleEditorGroups"
-    }
+    },
     
     //
     // COMMANDS AND QUICK OPEN
@@ -340,5 +340,29 @@
         "key": "ctrl+f12",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
+    },
+
+    //
+    // Latex Workshop
+    //
+
+    {
+        "key": "ctrl+b",
+        "command": "latex-workshop.shortcut.textbf",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+m ctrl+m",
+        "command": "latex-workshop.surround",
+        "when": "editorHasSelection && editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "latex-workshop.shortcut.textit",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
     },
 ]
