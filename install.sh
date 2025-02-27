@@ -23,8 +23,9 @@ verify_command () {
 setup_zsh() {
     log_info "Starting zsh setup..."
 
+    # oh-my-zsh
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    log_info "Installing oh-my-zsh setup"
+        log_info "Installing oh-my-zsh setup"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || log_error "Failed to install oh-my-zsh"
     else
         log_info "Skipping oh-my-zsh setup. Directory already exists"
