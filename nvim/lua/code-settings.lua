@@ -6,6 +6,7 @@ end
 vim.keymap.set("n", "<LEADER>sf", vscode_notify("workbench.action.quickOpen"))
 vim.keymap.set("n", "<LEADER>sg", vscode_notify("workbench.action.findInFiles"))
 vim.keymap.set("n", "<LEADER><LEADER>", vscode_notify("workbench.action.showAllEditorsByMostRecentlyUsed"))
+vim.keymap.set("n", "<LEADER>sk", vscode_notify("workbench.action.showCommands"))
 
 -- Remap folding keys using
 vim.keymap.set("n", "zM", vscode_notify("editor.foldAll"), { noremap = true, silent = true })
