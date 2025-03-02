@@ -13,27 +13,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- VSCode extension
 if vim.g.vscode then
-  -- Remap folding keys
-   vim.api.nvim_set_keymap('n', 'zM', '<Cmd>call VSCodeNotify("editor.foldAll")<CR>', { noremap = true, silent = true })
-   vim.api.nvim_set_keymap('n', 'zR', '<Cmd>call VSCodeNotify("editor.unfoldAll")<CR>', { noremap = true, silent = true })
-   vim.api.nvim_set_keymap('n', 'zc', '<Cmd>call VSCodeNotify("editor.fold")<CR>', { noremap = true, silent = true })
-   vim.api.nvim_set_keymap('n', 'zC', '<Cmd>call VSCodeNotify("editor.foldRecursively")<CR>', { noremap = true, silent = true })
-   vim.api.nvim_set_keymap('n', 'zo', '<Cmd>call VSCodeNotify("editor.unfold")<CR>', { noremap = true, silent = true })
-   vim.api.nvim_set_keymap('n', 'zO', '<Cmd>call VSCodeNotify("editor.unfoldRecursively")<CR>', { noremap = true, silent = true })
-   vim.api.nvim_set_keymap('n', 'za', '<Cmd>call VSCodeNotify("editor.toggleFold")<CR>', { noremap = true, silent = true })
 
-  require("lazy").setup({
-    {
-      "lervag/vimtex",
-      lazy = false,     -- Load immediately (not lazy-loaded)
-      -- tag = "v2.15", -- Uncomment to pin to a specific release
-      init = function()
-      -- VimTeX configuration
-        vim.g.vimtex_view_method = "zathura"
-      end
-    }
-  })
+  -- Only load plugins that define the vscode field as true.
+  -- Took from https://github.com/Vourliotis/nvim.
+  local defaults = require('lazy.core.config').defaults
+  defaults.defaults = {
+    cond = function(plugin)
+        return plugin.vscode
+      end,
+  }
 
-else
-  require("lazy").setup("plugins")
+  require("code-settings")
+
 end
+  require("lazy").setup("plugins")

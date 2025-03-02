@@ -1,5 +1,6 @@
 return {
 	"lervag/vimtex",
+	vscode = true,
 	lazy = false, -- Load immediately (not lazy-loaded)
 	-- tag = "v2.15", -- Uncomment to pin to a specific release
 	init = function()
