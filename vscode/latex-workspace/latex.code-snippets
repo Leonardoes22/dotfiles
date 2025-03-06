@@ -1,0 +1,13 @@
+{
+	"Basic Document": {
+        "prefix": ["basic-document"],
+        "body": ["\\documentclass{article}",
+            "\\title{${1:Default Title}}",
+            "\\author{${2:Default Author}}",
+            "\\begin{document}",     
+            "\\maketitle",
+            "$0",
+            "\\end{document}"
+        ],
+    },
+}

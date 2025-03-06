@@ -1,0 +1,14 @@
+{
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/.output/%RELATIVE_DIR%",
+    "workbench.colorTheme": "Solarized Light",
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+    "latex-workshop.formatting.latexindent.args": [
+        "-c",
+        "%DIR%/",
+        "%TMPFILE%",
+        "-y=defaultIndent: '%INDENT%'",
+        "-m",
+        "-l=%WORKSPACE_FOLDER%/.vscode/latexindent.yaml"
+    ],
+}
